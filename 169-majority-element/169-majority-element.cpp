@@ -1,14 +1,18 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        unordered_map<int,int>umap;
+       int count=0;
+       int candidate=0;
         for(int i=0;i<nums.size();i++){
-            if(umap[nums[i]]==nums.size()/2){
-                return nums[i];
+            if(count==0){
+                candidate=nums[i];
             }
-            else umap[nums[i]]++;
+            if(candidate==nums[i]){
+                count++;
+            }
+            else count--;
         }
-         return -1;
+        return candidate;
     }
    
 };
