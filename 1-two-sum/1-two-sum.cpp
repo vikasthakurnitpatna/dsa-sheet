@@ -15,9 +15,9 @@ public:
         // return ans;
         vector<int> result;
         unordered_map <int,int> mapsum;
-        for(int i=0;i<nums.size();i++){
-            mapsum[nums[i]]=i;
-        }
+        // for(int i=0;i<nums.size();i++){
+        //     mapsum[nums[i]]=i;
+        // }
         for(int j=0;j<nums.size();j++){
             int val=nums[j];
             if(mapsum.find(target-val)!=mapsum.end() && mapsum[target-val]!=j){
@@ -25,6 +25,7 @@ public:
                 result.push_back(mapsum[target-val]);
                 break;
             }
+            else mapsum[nums[j]]=j;
         }
         return result;
     }
