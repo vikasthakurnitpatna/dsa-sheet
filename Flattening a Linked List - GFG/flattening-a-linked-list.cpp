@@ -125,34 +125,62 @@ struct Node{
 //     }
 //     temp->next = n;
 // }  
+Node* merge(Node* a,Node* b){
+   Node *temp = new Node(0);
+    Node *res = temp; 
     
+    while(a != NULL && b != NULL) {
+        if(a->data < b->data) {
+            temp->bottom = a; 
+            temp = temp->bottom; 
+            a = a->bottom; 
+        }
+        else {
+            temp->bottom = b;
+            temp = temp->bottom; 
+            b = b->bottom; 
+        }
+    }
+    
+    if(a) temp->bottom = a; 
+    else temp->bottom = b; 
+    
+    return res -> bottom;
+}  
     
 Node *flatten(Node *root)
 {
    // Your code here
-   vector<int>v;
-   while(root!=NULL){
-       Node* head=root;
-       while(head!=NULL){
-           v.push_back(head->data);
-           head=head->bottom;
-       }
-       root=root->next;
-   }
-   sort(v.begin(),v.end());
+   if(root==NULL || root->next==NULL) return root;
+   
+   root->next=flatten(root->next);
+   
+   root=merge(root,root->next);
+   return root;
+   
+   
+   
+//   vector<int>v;
+//   while(root!=NULL){
+//       Node* head=root;
+//       while(head!=NULL){
+//           v.push_back(head->data);
+//           head=head->bottom;
+//       }
+//       root=root->next;
+//   }
+//   sort(v.begin(),v.end());
  
-    Node* h = new Node(v[0]);
-
-   Node* head=h;
-   for(int i=1;i<v.size();i++){
-
-       Node* n = new Node(v[i]);
-
-       head->bottom=n;
-
-       head=head->bottom;
-
-   }
-   return h;
+  
+//   Node* head=new Node(v[0]);
+//     Node* temp=head;
+//   for(int i=1;i<v.size();i++){
+//       Node* n=new Node(v[i]);
+       
+//       temp->bottom=n;
+//       temp=temp->bottom;
+       
+//   }
+//   return head;
 }
 
