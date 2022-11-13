@@ -15,11 +15,11 @@ public:
         long ans=capacity[0];
         for(int i=1;i<n;i++){
             
-            if(capacity[i]-i < 0) continue;
+            // if(capacity[i]-i < 0) continue;
             
-            else if(capacity[i]-i == 0) return 0;
+            // else if(capacity[i]-i == 0) return 0;
             
-            else ans=(ans%mod*(capacity[i]-i)%mod)%mod;
+            ans=(ans%mod*(capacity[i]-i)%mod)%mod;
             
         }
         return ans%mod;
