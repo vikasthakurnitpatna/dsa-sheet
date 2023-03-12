@@ -14,17 +14,27 @@ public:
     vector<int> findMaxRow(vector<vector<int>> mat, int N) {
         //code here
         int count=0;
-        int n=mat.size();
+        int r=mat.size();
+        int c=mat[0].size();
         int row=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<mat[0].size();j++){
-                if(mat[i][j]==1 && count<mat[0].size()-j){
-                    row=i;
-                    count=mat[0].size()-j;
-                }
+        // for(int i=0;i<n;i++){
+        //     for(int j=0;j<mat[0].size();j++){
+        //         if(mat[i][j]==1 && count<mat[0].size()-j){
+        //             row=i;
+        //             count=mat[0].size()-j;
+        //         }
+        //     }
+        // }
+        // return {row,count};
+        int j=0;
+        while(j<c){
+            int i=0;
+            while(i<r){
+                if(mat[i][j]==1) return {i,c-j};
+                i++;
             }
+            j++;
         }
-        return {row,count};
     }
 };
 
